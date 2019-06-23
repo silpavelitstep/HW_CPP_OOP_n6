@@ -1,4 +1,5 @@
 #include "classes6.h"
+
 //complex
 complex complex::operator+(complex lx) {
 	complex cx;
@@ -50,3 +51,31 @@ bool complex::operator==(complex lx) {
 	return this->real == lx.real && this->image == this->image;
 }
 /////////////////////////////////////////
+// 21
+void game21::game() {
+	cout << "count of desk? ";
+	int desksCount;
+	cin >> desksCount;
+	DeskOfCard doc(desksCount);//take desk(s)
+	people diller(true);
+	people player(false);
+	bool isEnd = false;
+	//player and diller take two card
+	diller.takeCard();
+	diller.takeCard();
+	player.takeCard();
+	player.takeCard();
+	//score and add new card
+	int playerScore;//4..21 or more
+	int dillerScore;//4..21 or more
+	while (isEnd) {
+		//check score
+		playerScore = player.score();
+		dillerScore = diller.score();
+
+
+	}
+	
+
+}
+void people::

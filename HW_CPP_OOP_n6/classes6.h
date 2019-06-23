@@ -21,4 +21,30 @@ public:
 	double getImage() { return image;};
 
 };
+
+class DeskOfCard {
+public:
+	int desk;//count of desk, max 8
+	// index  0   1   2 3 4 5 6 7 8 9  10 11 12 
+	// name   K   A   2 3 4 5 6 7 8 9   0  J  Q
+	//score  10 11(1) 2 3 4 5 6 7 8 9  10 10 10
+	// count  4   4   4 4 4 4 4 4 4 4   4  4  4 in every desk
+	//count of cards and score of card
+	char card[3][13] =
+	{ {'K','A','2','3','4','5','6','7','8','9','0','J','Q'},
+	 {10,11,2,3,4,5,6,7,8,9,10,10,10},
+	 {4,  4,4,4,4,4,4,4,4,4, 4, 4, 4} };
+	DeskOfCard(int desk) :desk(desk) {};
+};
+class people {
+public:
+	bool isDiller;
+	people(bool d) :isDiller(d) {}
+	void takeCard();
+	int score();
+};
+class game21 {
+public:
+	void game();
+};
 #endif

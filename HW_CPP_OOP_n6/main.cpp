@@ -2,8 +2,9 @@
 #include "classes6.h"
 using namespace std;
 void task1();
+void task2();//black jack
 int main() {
-	task1();
+	task2();
 	//system("pause");
 	return 0;
 }
@@ -40,4 +41,14 @@ void task1() {
 	cout << res << endl;
 	lxres.set(8, -9);
 	cout << lxres << endl;
+}
+void task2() {
+	DeskOfCard doc;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 13; j++) {
+			cout << (int)doc.card[i][j] << ' ';
+		}
+		cout << endl;
+	}
+
 }
