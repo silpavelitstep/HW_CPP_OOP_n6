@@ -45,7 +45,13 @@ void task1() {
 void task2() {
 	player player1(10);//take 100$ money from bank
 	casino acasino;//go to a casino
-	DeskOfCard doc(1);//go to black jack table, select mode.
+	cout << "How much desk? (1..8)\n>";
+	int deskCount;
+	cin >> deskCount;
+	if (deskCount < 1 || deskCount>8)
+		deskCount = 1;
+	DeskOfCard doc(deskCount);//go to black jack table, select mode.
+	//doc.show();
 	cout << "diller: Hello, sir!\n";
 	char select = 'y';
 	while (true) {

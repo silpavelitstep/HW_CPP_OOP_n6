@@ -24,7 +24,7 @@ public:
 
 class DeskOfCard {
 public:
-	int desk;//count of desk, max 8
+	//int desk;//count of desk, max 8
 	// index  0   1   2 3 4 5 6 7 8 9  10 11 12 
 	// name   K   A   2 3 4 5 6 7 8 9   0  J  Q
 	//score  10 11(1) 2 3 4 5 6 7 8 9  10 10 10
@@ -34,7 +34,7 @@ public:
 	{ {'K','A','2','3','4','5','6','7','8','9','0','J','Q'},
 	 {10,11,2,3,4,5,6,7,8,9,10,10,10},
 	 {4,  4,4,4,4,4,4,4,4,4, 4, 4, 4} };
-	DeskOfCard(int desk) :desk(desk) {};
+	DeskOfCard(int);
 	void show();
 };
 class player {

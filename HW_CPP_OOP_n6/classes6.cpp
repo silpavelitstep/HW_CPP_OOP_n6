@@ -74,7 +74,7 @@ void casino::game21(player &pl, DeskOfCard& doc) {
 	pl.takeCard(doc);
 	pl.takeCard(doc);
 	
-	player diller(0,false);
+	player diller(0,true);
 	diller.takeCard(doc);
 	diller.takeCard(doc);
 	int playerScore = pl.score();//show
@@ -190,7 +190,11 @@ int player::score() {
 void player::moveCash(int rate) {
 	cash += rate;
 }
-
+DeskOfCard::DeskOfCard(int deskCount) {
+	for (int i = 0; i < 13; i++) {
+		card[2][i] *= deskCount;
+	}
+}
 void DeskOfCard::show() {
 	for (int j = 0; j < 13; j++)
 		cout << card[0][j] << ' ';
