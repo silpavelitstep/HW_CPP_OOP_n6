@@ -71,6 +71,11 @@ void casino::game21(player &pl, DeskOfCard& doc) {
 	//player and diller take two cards each.
 	pl.takeCard(doc);
 	pl.takeCard(doc);
+	player pl2(0);
+	pl2.takeCard(doc);
+	pl2.takeCard(doc);
+	cout << "score= " << pl.score() << endl;
+	cout << "score= " << pl2.score() << endl;
 	cout << "=====+=====+=====\n";
 }
 void player::takeCard(DeskOfCard& doc) {
@@ -86,14 +91,24 @@ void player::takeCard(DeskOfCard& doc) {
 	cards[0][cardCount]=doc.card[0][rndcard];//name
 	cards[1][cardCount] = doc.card[1][rndcard];//price
 }
-void player::score() {
+int player::score() {
 	int sum=0;
+	//iter cards
 	for (int i = 0; i <= cardCount; i++) {
-		if (sum >= 21 && cards[0][i] = 'A')
+		//show each
+		if(cards[0][i])//!=10
+			cout << cards[0][i] << "  ";
+		else//=10
+			cout << 10 << "  ";
+		//calc sum
+		if (sum >= 21 && cards[0][i] == 'A')//Ace is 10 or 1(>=21)
 			sum += 1;
+		else sum += cards[1][i];
 	}
-		
+	cout << endl;
+	return sum;
 }
+
 void DeskOfCard::show() {
 	for (int j = 0; j < 13; j++)
 		cout << card[0][j] << ' ';

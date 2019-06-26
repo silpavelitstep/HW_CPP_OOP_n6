@@ -45,7 +45,8 @@ public:
 	player(int cash) :cash(cash), cardCount(-1) {}
 	int showCash() { return cash; }
 	void takeCard(DeskOfCard& doc);
-	void score();
+	int score();
+	
 };
 class diller {
 public:
