@@ -74,12 +74,14 @@ void casino::game21(player &pl, DeskOfCard& doc) {
 	pl.takeCard(doc);
 	pl.takeCard(doc);
 	
-	player diller(0,true);
+	player diller(0,false);
 	diller.takeCard(doc);
 	diller.takeCard(doc);
 	int playerScore = pl.score();//show
+	cout << "player score= " << playerScore << endl;
 	int dillerScore = diller.score();//not show
-	cout << "score= " << playerScore << endl;
+	
+	cout << "diller score= " << dillerScore << endl;
 	//=21 or >21 after 4 cards
 	if (playerScore > 21) {
 		cout << "you loser\n";
@@ -92,8 +94,62 @@ void casino::game21(player &pl, DeskOfCard& doc) {
 		cout << "equals\n";
 		pl.moveCash(rate);//cash=cash+rate
 	}
-	//
-		
+	//<21 again card
+	char select=' ';
+	while (true) {
+		cout << "Do you need a card?\n[press y or n key then enter]\n>";
+		do {
+			cin >> select;
+		} while (select!='n' && select!='y');
+		//player take or don't take a card
+		if (select == 'y')
+			pl.takeCard(doc);
+		else
+			break;//diller must not take card
+		dillerScore = diller.score();
+		cout << "diller score= " << dillerScore << endl;
+		playerScore = pl.score();//show player cards
+		cout << "player score= " << playerScore << endl;
+		if (playerScore > 21) {
+			cout << "you loser\n";
+			return;//end round
+		}
+		if(playerScore==21)//21
+			if (dillerScore == 21) {
+				cout << "equals\n";
+				pl.moveCash(rate);//cash=cash+rate
+				return;//end round
+			}
+			else {
+				cout << "3 in 2.\n";
+				pl.moveCash((int)rate * 1.5);
+				return;//end round
+			}
+
+		//if player taked a card but sum not 21
+		//then diller take card if he need 
+		if (dillerScore < 17)
+			diller.takeCard(doc);
+		dillerScore = diller.score();
+		if (dillerScore == 21) {
+			cout << "you loser\n";
+			return;//end round
+		}
+	}
+	//end while, last score;
+	if (dillerScore > playerScore && dillerScore<=21) {
+		cout << "you loser\n";
+		return;//end round
+	}
+	if (dillerScore == playerScore && dillerScore<=21) {
+		cout << "equals\n";
+		pl.moveCash(rate);//cash=cash+rate
+		return;//end round
+	}
+	if (dillerScore < playerScore && playerScore<=21) {
+		cout << "3 in 2.\n";
+		pl.moveCash((int)rate * 1.5);
+	}
 
 		
 	
