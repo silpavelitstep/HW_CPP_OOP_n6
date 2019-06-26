@@ -1,4 +1,6 @@
 #include "classes6.h"
+#include <stdlib.h>
+#include <time.h>
 
 //complex
 complex complex::operator+(complex lx) {
@@ -52,30 +54,55 @@ bool complex::operator==(complex lx) {
 }
 /////////////////////////////////////////
 // 21
-void game21::game() {
-	cout << "count of desk? ";
-	int desksCount;
-	cin >> desksCount;
-	DeskOfCard doc(desksCount);//take desk(s)
-	people diller(true);
-	people player(false);
-	bool isEnd = false;
-	//player and diller take two card
-	diller.takeCard();
-	diller.takeCard();
-	player.takeCard();
-	player.takeCard();
-	//score and add new card
-	int playerScore;//4..21 or more
-	int dillerScore;//4..21 or more
-	while (isEnd) {
-		//check score
-		playerScore = player.score();
-		dillerScore = diller.score();
-
-
+void casino::game21(player &pl, DeskOfCard& doc) {
+	cout << "=====+=====+=====\n";
+	cout << "diller: new round!\n";
+	cout << "I have "<<pl.showCash()<<"$ money.\n";
+	cout << "diller: put your money for round\n>";
+	double rate;
+	cin >> rate;
+	if (rate > pl.showCash()) {
+		cout << "Incorrect rate!\n";
+		cout << "=====+=====+=====\n";
+		return;
 	}
-	
-
+	cout << "You cards, please^.\n";
+	srand(time(0));
+	//player and diller take two cards each.
+	pl.takeCard(doc);
+	pl.takeCard(doc);
+	cout << "=====+=====+=====\n";
 }
-void people::
+void player::takeCard(DeskOfCard& doc) {
+	int rndcard;
+	//generation new card
+	do {
+		rndcard = rand() % 13;
+	} while (doc.card[2][rndcard] == 0);
+	//take the card from desk
+	doc.card[2][rndcard]--;
+	//give the card to player
+	cardCount++;
+	cards[0][cardCount]=doc.card[0][rndcard];//name
+	cards[1][cardCount] = doc.card[1][rndcard];//price
+}
+void player::score() {
+	int sum=0;
+	for (int i = 0; i <= cardCount; i++) {
+		if (sum >= 21 && cards[0][i] = 'A')
+			sum += 1;
+	}
+		
+}
+void DeskOfCard::show() {
+	for (int j = 0; j < 13; j++)
+		cout << card[0][j] << ' ';
+	cout << endl;
+	for (int i = 1; i < 3; i++) {
+		
+		for (int j = 0; j < 13; j++) {
+			cout << (int)card[i][j] << ' ';
+		}
+		cout << endl;
+	}
+}

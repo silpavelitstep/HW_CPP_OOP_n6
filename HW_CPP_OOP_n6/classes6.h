@@ -35,16 +35,23 @@ public:
 	 {10,11,2,3,4,5,6,7,8,9,10,10,10},
 	 {4,  4,4,4,4,4,4,4,4,4, 4, 4, 4} };
 	DeskOfCard(int desk) :desk(desk) {};
+	void show();
 };
-class people {
+class player {
+	int cash;
+	int cardCount;
+	char cards[2][15];
 public:
-	bool isDiller;
-	people(bool d) :isDiller(d) {}
-	void takeCard();
-	int score();
+	player(int cash) :cash(cash), cardCount(-1) {}
+	int showCash() { return cash; }
+	void takeCard(DeskOfCard& doc);
+	void score();
 };
-class game21 {
+class diller {
 public:
-	void game();
+};
+class casino{
+public:
+	void game21(player &pl, DeskOfCard &doc);
 };
 #endif

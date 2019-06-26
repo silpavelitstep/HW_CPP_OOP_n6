@@ -43,12 +43,25 @@ void task1() {
 	cout << lxres << endl;
 }
 void task2() {
-	DeskOfCard doc;
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 13; j++) {
-			cout << (int)doc.card[i][j] << ' ';
-		}
-		cout << endl;
+	player player1(10);//take 100$ money from bank
+	casino acasino;//go to a casino
+	DeskOfCard doc(1);//go to black jack table, select mode.
+	cout << "diller: Hello, sir!\n";
+	char select = 'y';
+	while (true) {
+		//No I don't or money is no then end game
+		cout << "diller: do you want to play?\n[press y or n key then enter]\n>";
+		cin >> select;
+		if (select == 'n' or !player1.showCash())
+			break;
+		else if (select == 'y')
+			acasino.game21(player1, doc);//begin game
+		else
+			cout << "[Incorrect select]!\n";
 	}
+	cout << "diller: goodbye sir, come again!\n";
+	 
+	
+	
 
 }
