@@ -55,6 +55,7 @@ bool complex::operator==(complex lx) {
 /////////////////////////////////////////
 // 21
 void casino::game21(player &pl, DeskOfCard& doc) {
+	pl.zeroCard();//player without card with money
 	cout << "=====+=====+=====\n";
 	cout << "diller: new round!\n";
 	cout << "I have "<<pl.showCash()<<"$ money.\n";
@@ -66,17 +67,37 @@ void casino::game21(player &pl, DeskOfCard& doc) {
 		cout << "=====+=====+=====\n";
 		return;
 	}
+	pl.moveCash(-rate);//cash=cash-rate
 	cout << "You cards, please^.\n";
 	srand(time(0));
 	//player and diller take two cards each.
 	pl.takeCard(doc);
 	pl.takeCard(doc);
-	player pl2(0);
-	pl2.takeCard(doc);
-	pl2.takeCard(doc);
-	cout << "score= " << pl.score() << endl;
-	cout << "score= " << pl2.score() << endl;
-	cout << "=====+=====+=====\n";
+	
+	player diller(0,true);
+	diller.takeCard(doc);
+	diller.takeCard(doc);
+	int playerScore = pl.score();//show
+	int dillerScore = diller.score();//not show
+	cout << "score= " << playerScore << endl;
+	//=21 or >21 after 4 cards
+	if (playerScore > 21) {
+		cout << "you loser\n";
+	}
+	if (dillerScore > 21 && playerScore==21) {//21
+		cout << "3 in 2.\n";
+		pl.moveCash((int)rate * 1.5);
+	}
+	if (playerScore ==  dillerScore && dillerScore==21) {
+		cout << "equals\n";
+		pl.moveCash(rate);//cash=cash+rate
+	}
+	//
+		
+
+		
+	
+	
 }
 void player::takeCard(DeskOfCard& doc) {
 	int rndcard;
@@ -95,11 +116,13 @@ int player::score() {
 	int sum=0;
 	//iter cards
 	for (int i = 0; i <= cardCount; i++) {
-		//show each
-		if(cards[0][i])//!=10
-			cout << cards[0][i] << "  ";
-		else//=10
-			cout << 10 << "  ";
+		//show each if not diller
+		if (!isDiller) {//don't show diller cards
+			if (cards[0][i] != '0')//!=10
+				cout << cards[0][i] << "  ";
+			else//=10
+				cout << 10 << "  ";
+		}
 		//calc sum
 		if (sum >= 21 && cards[0][i] == 'A')//Ace is 10 or 1(>=21)
 			sum += 1;
@@ -107,6 +130,9 @@ int player::score() {
 	}
 	cout << endl;
 	return sum;
+}
+void player::moveCash(int rate) {
+	cash += rate;
 }
 
 void DeskOfCard::show() {

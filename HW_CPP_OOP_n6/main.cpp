@@ -59,6 +59,7 @@ void task2() {
 		else
 			cout << "[Incorrect select]!\n";
 	}
+	cout << "cash= " << player1.showCash << endl;
 	cout << "diller: goodbye sir, come again!\n";
 	 
 	

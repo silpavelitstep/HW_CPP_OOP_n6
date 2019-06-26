@@ -41,11 +41,14 @@ class player {
 	int cash;
 	int cardCount;
 	char cards[2][15];
+	bool isDiller;
 public:
-	player(int cash) :cash(cash), cardCount(-1) {}
+	player(int cash, bool isD=false) :cash(cash), isDiller(isD),cardCount(-1) {}
 	int showCash() { return cash; }
 	void takeCard(DeskOfCard& doc);
 	int score();
+	void moveCash(int rate);
+	void zeroCard() { cardCount = -1; };
 	
 };
 class diller {
