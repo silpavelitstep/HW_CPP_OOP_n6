@@ -1,7 +1,7 @@
 #include "classes6.h"
 #include <stdlib.h>
 #include <time.h>
-
+#include <stdarg.h>
 //complex
 complex complex::operator+(complex lx) {
 	complex cx;
@@ -206,4 +206,27 @@ void DeskOfCard::show() {
 		}
 		cout << endl;
 	}
+}
+//3th
+void myprint(char* format, ...) {
+	va_list factor;
+	va_start(factor, format);
+	for (char* c = format; *c;c++) {
+		if (*c != '%')
+		{
+			cout << *c;
+			continue;
+		}
+		switch (*++c){
+		case 'd':
+			cout<< va_arg(factor, int);
+			break;
+		case 'f':
+			cout<< va_arg(factor, double);
+			break;
+		default://'c' or other
+			cout<< va_arg(factor, char);
+		}
+	}
+	va_end(factor);
 }

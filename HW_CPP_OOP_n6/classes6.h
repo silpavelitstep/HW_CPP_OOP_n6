@@ -58,4 +58,5 @@ class casino{
 public:
 	void game21(player &pl, DeskOfCard &doc);
 };
+void myprint(char* format, ...);
 #endif

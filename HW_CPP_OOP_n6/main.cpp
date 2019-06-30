@@ -3,9 +3,12 @@
 using namespace std;
 void task1();
 void task2();//black jack
+void task3();
+void stop();//
 int main() {
-	task2();
-	//system("pause");
+	task3();
+	
+	stop();
 	return 0;
 }
 void task1() {
@@ -71,4 +74,12 @@ void task2() {
 	
 	
 
+}
+void task3() {
+	char str[] = "%d %f\n%d %f\n%c\t %c\n";
+	myprint(str, 5, 11.7, 9, 89.78, 'a', 'b');
+}
+void stop() {
+	char ps[100];
+	cin.getline(ps,'\n');
 }
