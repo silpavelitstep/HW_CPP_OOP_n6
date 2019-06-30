@@ -80,6 +80,7 @@ void task3() {
 	myprint(str, 5, 11.7, 9, 89.78, 'a', 'b');
 }
 void stop() {
+	cout << "<For close press [enter] please!>\n";
 	char ps[100];
 	cin.getline(ps,'\n');
 }
